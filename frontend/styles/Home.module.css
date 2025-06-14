@@ -1,0 +1,89 @@
+.card {
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  z-index: 10;
+  text-align: center;
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+
+.card h2 {
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 30ch;
+}
+
+.center::before {
+  background: var(--secondary-glow);
+  border-radius: 50%;
+  width: 100%;
+  height: 360px;
+}
+
+.center::after {
+  background: var(--primary-glow);
+  width: 100%;
+  max-width: 500px;
+  height: 180px;
+  margin-right: 150px;
+  margin-bottom: 150px;
+}
+
+.center:hover::after {
+  transform: translateY(20px) scale(1.1);
+  /* transform: rotate(-5deg); */
+}
+.center:hover::before {
+  transform: translateX(20px) translateY(-10px) scaleX(1.1) rotate(10deg);
+  /* transform: rotate(-5deg); */
+}
+
+.center::before,
+.center::after {
+  content: '';
+  /* left: 10%; */
+  position: absolute;
+  filter: blur(45px);
+  transform: translateZ(0);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    color: #c084fc;
+  }
+
+  .card:hover span {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .card:hover span {
+    transform: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .card {
+    padding: 1rem 2.5rem;
+  }
+}
